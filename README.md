@@ -99,9 +99,10 @@ Result
 Usage
 ```
 translator.translate({
-  text: ['Bonjour']
-}).then(translationResult => {
-  console.log(JSON.stringify({ detection }, null, 2))
+  text: ['Bonjour'],
+  to: "en"
+}).then(translation => {
+  console.log(JSON.stringify({ translation }, null, 2))
 });
 ```
 Result
@@ -127,16 +128,19 @@ Result
 ### Transliterate endpoint
 Usage
 ```
-translator.translate({
-  text: ['Bonjour']
+translator.transliterate({
+  text: ["こんにちは"],
+  language: "ja",
+  fromScript: "Jpan",
+  toScript: "Latn",
 }).then(transliteration => {
-  console.log(JSON.stringify({ detection }, null, 2))
+  console.log(JSON.stringify({ transliteration }, null, 2))
 });
 ```
 Result
 ```
 {
-  "translation": [
+  "transliteration": [
     {
       "text": "Kon'nichiwa",
       "script": "Latn"

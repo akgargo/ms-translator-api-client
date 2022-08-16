@@ -1,6 +1,6 @@
 {
   "name": "@akgargo/ms-translator-api-client",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Node JS Client Library for using Microsoft Azure Translator API",
   "main": "dist/index.js",
   "scripts": {
