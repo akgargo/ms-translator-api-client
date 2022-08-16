@@ -1,0 +1,36 @@
+{
+  "name": "@akgargo/ms-text-translator-api-client",
+  "version": "0.0.1",
+  "description": "Node JS Client Library for using Microsoft Azure Translator API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --build ./tsconfig.json",
+    "test": "jest"
+  },
+  "keywords": ["Translate", "Translator", "Microsoft Translator Client", "MS Translatior API", "Azure Translator"],
+  "author": "Victor Monsalve",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/dotenv": "^8.2.0",
+    "@types/jest": "^28.1.7",
+    "@types/node": "^18.7.5",
+    "@types/uuid": "^8.3.4",
+    "jest": "^28.1.3",
+    "ts-jest": "^28.0.8",
+    "tslint": "^6.1.3",
+    "typescript": "^4.7.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akgargo/ms-text-translator-api-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akgargo/ms-text-translator-api-client/issues"
+  },
+  "homepage": "https://github.com/akgargo/ms-text-translator-api-client#readme"
+}
