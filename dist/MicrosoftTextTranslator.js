@@ -99,12 +99,23 @@ var MicrosoftTextTranslator = /** @class */ (function () {
         }
         return config;
     };
+    MicrosoftTextTranslator.prototype.detect = function (params) {
+        return __awaiter(this, void 0, void 0, function () {
+            var config;
+            return __generator(this, function (_a) {
+                config = this.getBaseRequestConfiguration();
+                return [2 /*return*/, axios_1.default.request(__assign(__assign({}, config), { method: 'POST', url: 'detect', headers: __assign(__assign({}, config.headers), { 'Content-type': 'application/json' }), data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(function (it) { return ({ text: it }); }) }))
+                        .then(function (r) { return r.data; })
+                        .catch(function (error) { console.log(error.toJSON()); return []; })];
+            });
+        });
+    };
     MicrosoftTextTranslator.prototype.translate = function (params) {
         return __awaiter(this, void 0, void 0, function () {
             var config;
             return __generator(this, function (_a) {
                 config = this.getBaseRequestConfiguration();
-                return [2 /*return*/, axios_1.default.request(__assign(__assign({}, config), { method: 'POST', url: 'translate', headers: __assign(__assign({}, config.headers), { 'Content-type': 'application/json; charset=UTF-8' }), params: __assign(__assign({}, config.params), { to: params.to }), data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(function (it) { return ({ text: it }); }) }))
+                return [2 /*return*/, axios_1.default.request(__assign(__assign({}, config), { method: 'POST', url: 'translate', headers: __assign(__assign({}, config.headers), { 'Content-type': 'application/json; charset=UTF-8' }), params: __assign(__assign({}, config.params), params), data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(function (it) { return ({ text: it }); }) }))
                         .then(function (r) { return r.data; })
                         .catch(function (error) { console.log(error.toJSON()); return []; })];
             });
@@ -121,12 +132,12 @@ var MicrosoftTextTranslator = /** @class */ (function () {
             });
         });
     };
-    MicrosoftTextTranslator.prototype.detect = function (params) {
+    MicrosoftTextTranslator.prototype.languages = function (params) {
         return __awaiter(this, void 0, void 0, function () {
             var config;
             return __generator(this, function (_a) {
                 config = this.getBaseRequestConfiguration();
-                return [2 /*return*/, axios_1.default.request(__assign(__assign({}, config), { method: 'POST', url: 'detect', headers: __assign(__assign({}, config.headers), { 'Content-type': 'application/json' }), data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(function (it) { return ({ text: it }); }) }))
+                return [2 /*return*/, axios_1.default.request(__assign(__assign({}, config), { method: 'GET', url: 'languages', headers: __assign(__assign({}, config.headers), { 'Content-type': 'application/json' }), params: __assign(__assign({}, config.params), params) }))
                         .then(function (r) { return r.data; })
                         .catch(function (error) { console.log(error.toJSON()); return []; })];
             });

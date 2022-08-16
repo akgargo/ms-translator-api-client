@@ -1,6 +1,6 @@
 {
   "name": "@akgargo/ms-translator-api-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Node JS Client Library for using Microsoft Azure Translator API",
   "main": "dist/index.js",
   "scripts": {
@@ -27,10 +27,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akgargo/ms-text-translator-api-client.git"
+    "url": "git+https://github.com/akgargo/ms-translator-api-client.git"
   },
   "bugs": {
-    "url": "https://github.com/akgargo/ms-text-translator-api-client/issues"
+    "url": "https://github.com/akgargo/ms-translator-api-client/issues"
   },
-  "homepage": "https://github.com/akgargo/ms-text-translator-api-client#readme"
+  "homepage": "https://github.com/akgargo/ms-translator-api-client#readme"
 }

@@ -216,6 +216,12 @@ declare type DetectResult = {
         isTransliterationSupported: boolean;
     }[];
 };
+declare type LanguageParameters = {
+    /**
+     * A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`, `transliteration` and `dictionary`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,dictionary`. To decide which set of supported languages is appropriate for your scenario, see the description of the [response object](#response-body).
+     */
+    scope?: 'translation' | 'transliteration' | 'dictionary';
+};
 declare type MicrosoftTranslatorConfiguration = {
     subscriptionKey: string;
     subscriptionRegion?: string;
@@ -229,8 +235,9 @@ export declare class MicrosoftTextTranslator {
     private domain;
     constructor({ defaultLanguage, ...config }: MicrosoftTranslatorConfiguration);
     private getBaseRequestConfiguration;
+    detect(params: DetectParameters): Promise<DetectResult[]>;
     translate(params: TranslateParameters): Promise<TranslateResult[]>;
     transliterate(params: TransliterateParameters): Promise<TransliterateResult[]>;
-    detect(params: DetectParameters): Promise<DetectResult[]>;
+    languages(params: LanguageParameters): Promise<DetectResult[]>;
 }
 export {};

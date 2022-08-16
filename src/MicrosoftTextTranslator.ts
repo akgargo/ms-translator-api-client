@@ -222,6 +222,28 @@ type DetectResult = {
     isTransliterationSupported: boolean
   }[]
 }
+type LanguageParameters = {
+  /**
+   * A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`, `transliteration` and `dictionary`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,dictionary`. To decide which set of supported languages is appropriate for your scenario, see the description of the [response object](#response-body).
+   */
+  scope?: 'translation' | 'transliteration' | 'dictionary'
+}
+type LanguageResult = {
+  /**
+   * provides languages supported to translate text from one language to another language.
+   */
+  translation?: any[]
+
+  /**
+   * provides capabilities for converting text in one language from one script to another script.
+   */
+  transliteration: any[]
+
+  /**
+   * provides language pairs for which Dictionary operations return data.
+   */
+  dictionary: any[]
+}
 
 type MicrosoftTranslatorConfiguration = {
   subscriptionKey: string
@@ -269,6 +291,23 @@ export class MicrosoftTextTranslator {
     return config;
   }
 
+  async detect(params: DetectParameters): Promise<DetectResult[]> {
+    const config = this.getBaseRequestConfiguration();
+
+    return axios.request({
+      ...config,
+      method: 'POST',
+      url: 'detect',
+      headers: {
+        ...config.headers,
+        'Content-type': 'application/json'
+      },
+      data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(it => ({ text: it }))
+    })
+      .then(r => r.data as DetectResult[])
+      .catch(error => { console.log(error.toJSON()); return []; })
+  }
+
   async translate(params: TranslateParameters): Promise<TranslateResult[]> {
     const config = this.getBaseRequestConfiguration();
 
@@ -280,10 +319,7 @@ export class MicrosoftTextTranslator {
         ...config.headers,
         'Content-type': 'application/json; charset=UTF-8'
       },
-      params: {
-        ...config.params,
-        to: params.to
-      },
+      params: { ...config.params, ...params },
       data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(it => ({ text: it }))
     })
       .then(r => r.data as TranslateResult[])
@@ -308,18 +344,19 @@ export class MicrosoftTextTranslator {
       .catch(error => { console.log(error.toJSON()); return []; })
   }
 
-  async detect(params: DetectParameters): Promise<DetectResult[]> {
+
+  async languages(params: LanguageParameters): Promise<DetectResult[]> {
     const config = this.getBaseRequestConfiguration();
 
     return axios.request({
       ...config,
-      method: 'POST',
-      url: 'detect',
+      method: 'GET',
+      url: 'languages',
       headers: {
         ...config.headers,
         'Content-type': 'application/json'
       },
-      data: (typeof params.text === 'string') ? [{ text: params.text }] : params.text.map(it => ({ text: it }))
+      params: { ...config.params, ...params }
     })
       .then(r => r.data as DetectResult[])
       .catch(error => { console.log(error.toJSON()); return []; })

@@ -3,7 +3,7 @@ non-official package that enables a Microsoft Azure Translator API Client for No
 
 This package was created as response of a lack of official packages for consuming MS Translator API in NodeJS applications.<br/>It provides an easy way to consume their enpointsand its fully extensible by adding layers of abstraction for business logic.
 
-**This package is currently a beta version and only supports "detect", "translate" and "transliterate" endpoints of the Azure [Text Translation REST API](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/rest-api-guide)**
+**This package is currently a beta version and only supports "languages", "detect", "translate" and "transliterate" endpoints of the Azure [Text Translation REST API](https://docs.microsoft.com/en-us/azure/cognitive-services/translator/reference/rest-api-guide)**
 
 ## Installing / Getting Started
 
@@ -71,6 +71,85 @@ The code above should print in the console
 ```
 
 ## Usage
+
+### Languages endpoint
+Usage
+```
+translator.languages({}).then(languages => {
+  console.log(JSON.stringify({ languages }, null, 2))
+});
+```
+Result
+```
+{
+  "detection": [
+    {
+      "translation": {
+        "af": {
+          "name": "Afrikaans",
+          "nativeName": "Afrikaans",
+          "dir": "ltr"
+        },
+        ....
+      },
+      "transliteration": {
+        "ar": {
+          "name": "Arabic",
+          "nativeName": "العربية",
+          "scripts": [
+            {
+              "code": "Arab",
+              "name": "Arabic",
+              "nativeName": "العربية",
+              "dir": "rtl",
+              "toScripts": [
+                {
+                  "code": "Latn",
+                  "name": "Latin",
+                  "nativeName": "اللاتينية",
+                  "dir": "ltr"
+                }
+              ]
+            },
+            {
+              "code": "Latn",
+              "name": "Latin",
+              "nativeName": "اللاتينية",
+              "dir": "ltr",
+              "toScripts": [
+                {
+                  "code": "Arab",
+                  "name": "Arabic",
+                  "nativeName": "العربية",
+                  "dir": "rtl"
+                }
+              ]
+            }
+          ]
+        },
+        ...
+      },
+      "dictionary": {
+        "af": {
+          "name": "Afrikaans",
+          "nativeName": "Afrikaans",
+          "dir": "ltr",
+          "translations": [
+            {
+              "name": "English",
+              "nativeName": "English",
+              "dir": "ltr",
+              "code": "en"
+            }
+          ]
+        },
+      ...
+      }
+    }
+  ]
+}
+```
+
 
 ### Detect endpoint
 Usage
